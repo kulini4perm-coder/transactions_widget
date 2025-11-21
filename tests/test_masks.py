@@ -3,6 +3,7 @@ import pytest
 
 from src.masks import get_mask_card_number, get_mask_account
 
+
 # Тестируем функцию get_mask_card
 def test_get_mask_card_number_stand(number_card):  # Стандартный тест с фикстурами
     assert get_mask_card_number(number_card) == '1234 56** **** 3456'
