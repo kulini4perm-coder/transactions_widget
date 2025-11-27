@@ -1,4 +1,4 @@
-import masks
+from . import masks
 
 
 def mask_account_card(type_and_number: str) -> str:
@@ -15,6 +15,9 @@ def mask_account_card(type_and_number: str) -> str:
         else:
             name_card += char
 
+    if not name_card.strip():  # Если название отсутствует (добавлено при тестировании)
+        name_card = "Название карты/счета не определено "
+
     if len(number_card) == 16:  # Создаем маску для номера карты
         mask_number = masks.get_mask_card_number(number_card)
 
@@ -27,6 +30,8 @@ def mask_account_card(type_and_number: str) -> str:
 def get_date(incoming_date: str) -> str:
     """Функция принимает данные о дате, преобразует
     и возвращает в необходимом формате"""
+    if incoming_date == '':  # Проверяем пустую строку
+        raise ValueError("Данные о дате отсутствуют")
 
     day: str = incoming_date[8:10]  # Выбираем данные о дне, месяце, годе из входящей строки
     month: str = incoming_date[5:7]
