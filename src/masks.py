@@ -1,6 +1,11 @@
 def get_mask_card_number(number: str) -> str:
     """Функция принимает на вход номер карты и возвращает ее маску:
     закрыты цифры по порядку с 7 по 12, номер разбит на блок по 4 цифры"""
+    if not number or len(number) < 16:  # Добавлен после тестирования, проверяет длину номера
+        raise ValueError("Номер карты слишком короткий или отсутствует.")
+    if len(number) > 16:
+        raise ValueError("Номер карты слишком длинный")
+
     list_char_of_number: list[str] = list(number)  # Перевод строкового значения в список
 
     for i in range(6, 12):  # Замена цифр по порядку с 7 по 12 на "*"
@@ -20,6 +25,11 @@ def get_mask_card_number(number: str) -> str:
 
 def get_mask_account(account_number: str) -> str:
     """Функция принимает на вход номер счета и возвращает его маску"""
+    if not account_number or len(account_number) < 20:  # Добавлен после тестирования, проверяет длину номера
+        raise ValueError("Номер счета слишком короткий или отсутствует.")
+    if len(account_number) > 20:
+        raise ValueError("Номер счета слишком длинный")
+
     mask_account: list[str] = ["*", "*"]  # Создаем список символов маски
     list_char_of_number: list[str] = list(account_number)  # Перевод строкового вида номера счета в список
 
