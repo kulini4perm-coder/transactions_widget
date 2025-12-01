@@ -175,14 +175,38 @@ def transactions_rub() -> list[dict]:
     ]
 
 
-
 @pytest.fixture  # Фикстура transaction_descriptions с ожидаемыми данными
-def expected_descriptions():
+def expected_descriptions() -> list[str]:
     return [
         "Перевод организации",
         "Перевод со счета на счет",
         "Перевод со счета на счет",
         "Перевод с карты на карту",
-        "Перевод организации"
+        "Перевод организации",
     ]
 
+
+@pytest.fixture  # Фикстура card_number_generator для диапазона 1-5
+def expected_range_1_to_5() -> list[str]:
+    return [
+        "0000 0000 0000 0001",
+        "0000 0000 0000 0002",
+        "0000 0000 0000 0003",
+        "0000 0000 0000 0004",
+        "0000 0000 0000 0005",
+    ]
+
+
+@pytest.fixture  # Фикстура card_number_generator для диапазона 98-101
+def expected_range_98_to_101() -> list[str]:
+    return [
+        "0000 0000 0000 0098",
+        "0000 0000 0000 0099",
+        "0000 0000 0000 0100",
+        "0000 0000 0000 0101",
+    ]
+
+
+@pytest.fixture  # Фикстура card_number_generator для некорректного диапазона
+def expected_empty_range() -> list[str]:
+    return []

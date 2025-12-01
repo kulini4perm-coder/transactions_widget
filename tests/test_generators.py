@@ -1,6 +1,6 @@
 import pytest
 
-from src.generators import filter_by_currency, transaction_descriptions
+from src.generators import card_number_generator, filter_by_currency, transaction_descriptions
 
 
 # Тест filter_by_currency для существующей валюты "USD"
@@ -44,4 +44,37 @@ def test_transaction_descriptions_empty_list() -> None:
     # Дополнительный тест на то, что пустой генератор сразу вызывает StopIteration при next()
     with pytest.raises(StopIteration):
         empty_iterator = transaction_descriptions(empty_list)
+        next(empty_iterator)
+
+
+# Тест card_number_generator для диапазона 1-5
+def test_card_number_generator_1_to_5(expected_range_1_to_5: list[str]) -> None:
+    start, end = 1, 5
+    result_list = list(card_number_generator(start, end))
+    assert result_list == expected_range_1_to_5
+
+
+# Тест card_number_generator для диапазона 98 до 101
+def test_card_number_generator_98_to_101(expected_range_98_to_101: list[str]) -> None:
+    start, end = 98, 101
+    result_list = list(card_number_generator(start, end))
+    assert result_list == expected_range_98_to_101
+
+
+# Тест card_number_generator если начальное и конечное значения аргументов равны
+def test_card_number_generator_single_value() -> None:
+    start, end = 1000, 1000
+    result_list = list(card_number_generator(start, end))
+    expected_list = ["0000 0000 0000 1000"]
+    assert result_list == expected_list
+
+
+# Тест card_number_generator когда start > end
+def test_card_number_generator_empty_range() -> None:
+    start, end = 10, 5  # Некорректный диапазон
+    result_list = list(card_number_generator(start, end))
+    assert result_list == []
+
+    with pytest.raises(StopIteration):
+        empty_iterator = card_number_generator(start, end)
         next(empty_iterator)
