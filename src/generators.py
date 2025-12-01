@@ -8,3 +8,10 @@ def filter_by_currency(list_of_dicts: list[dict], currency: str) -> Iterator[dic
     for transaction in list_of_dicts:
         if transaction["operationAmount"]["currency"]["code"] == currency:
             yield transaction
+
+
+def transaction_descriptions(list_of_dicts: list[dict]) -> Iterator[str]:
+    """Генератор возвращает описание каждой операции из списка транзакций по очереди"""
+
+    for transaction in list_of_dicts:
+        yield transaction["description"]
