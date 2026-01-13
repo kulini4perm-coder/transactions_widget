@@ -4,8 +4,9 @@ import pandas as pd
 
 
 def read_transactions_from_csv(file_path: str) -> list[dict[Any, Any]]:
-    """Считывает финансовые операции из CSV-файла через pandas.
+    """Функция считывает финансовые операции из CSV-файла через pandas.
     Возвращает список словарей."""
+
     try:
         df = pd.read_csv(file_path)
         # Преобразуем DataFrame в список словарей (orient='records')
@@ -19,8 +20,9 @@ def read_transactions_from_csv(file_path: str) -> list[dict[Any, Any]]:
 
 
 def read_transactions_from_excel(file_path: str) -> list[dict[Any, Any]]:
-    """Считывает финансовые операции из Excel через pandas.
+    """Функция считывает финансовые операции из Excel через pandas.
     Возвращает список словарей."""
+
     try:
         df = pd.read_excel(file_path)
         # Заменяем значения NaN на None для корректного отображения в словарях
