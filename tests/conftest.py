@@ -210,3 +210,20 @@ def expected_range_98_to_101() -> list[str]:
 @pytest.fixture  # Фикстура card_number_generator для некорректного диапазона
 def expected_empty_range() -> list[str]:
     return []
+
+
+@pytest.fixture  # Фикстура для тестов функции чтения csv-, excel-файлов
+def csv_excel_transactions():
+    return [
+        {
+            "id": 650703,
+            "state": "EXECUTED",
+            "date": "2023-09-05T11:30:32Z",
+            "amount": 16210,
+            "currency_name": "Sol",
+            "currency_code": "PEN",
+            "from": "Счет 58803664561298323391",
+            "to": "Счет 39745660563456619397",
+            "description": "Перевод организации"
+        }
+    ]
