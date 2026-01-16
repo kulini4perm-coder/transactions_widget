@@ -8,7 +8,7 @@ def read_transactions_from_csv(file_path: str) -> list[dict[Any, Any]]:
     Возвращает список словарей."""
 
     try:
-        df = pd.read_csv(file_path)
+        df = pd.read_csv(file_path, sep=';')
         # Преобразуем DataFrame в список словарей (orient='records')
         return cast(list[dict[Any, Any]], df.to_dict(orient="records"))
     except FileNotFoundError:
